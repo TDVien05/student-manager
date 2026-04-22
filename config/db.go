@@ -1,12 +1,12 @@
 package config
 
 import (
-	"database/sql"
+	"database/sql" // use for operation such as insert, update, delete
 	"fmt"
 	"log"
 	"os"
 
-	"github.com/go-sql-driver/mysql"
+	"github.com/go-sql-driver/mysql" // use to enable a MySQL connection
 	"github.com/joho/godotenv"
 )
 

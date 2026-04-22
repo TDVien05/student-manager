@@ -10,10 +10,16 @@ type StudentRepository struct {
 	DB *sql.DB
 }
 
+/* 
+	This function to get one instance of StudentRepository 
+	Then you can declare it in main function and use one instance for the whole program
+	--> The reason why use pointer
+*/
 func GetNewStudentRepository(db *sql.DB) *StudentRepository {
 	return &StudentRepository{DB: db}
 }
 
+// To bind this function belongs to StudentRepository struct
 func (studentRepo *StudentRepository) GetAllStudents() ([]models.Student, error) {
 	var students []models.Student
 
