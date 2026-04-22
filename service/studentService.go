@@ -67,3 +67,7 @@ func (s *StudentService) GetStudentsByFullNameService(fullName string) ([]models
 func (s *StudentService) DeleteStudentByIdService(id uint) error {
 	return s.studentRepository.DeleteStudentById(id)
 }
+
+func (s *StudentService) GetOneRecordStudentByFullNameService(fullname string) ([]models.Student, error) {
+	return s.studentRepository.GetOneRecordStudentByFullName(fullname)
+}

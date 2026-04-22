@@ -196,3 +196,32 @@ func (studentRepo *StudentRepository) DeleteStudentById(id uint) error {
 
 	return nil
 }
+
+func (studentRepo *StudentRepository) GetOneRecordStudentByFullName(fullname string) ([]models.Student, error) {
+	query := `
+		SELECT id, full_name, email, age, address
+		FROM students
+		WHERE full_name LIKE ?
+	`
+
+	search := "%" + fullname + "%"
+
+	var student models.Student
+	var result []models.Student
+
+	err := studentRepo.DB.QueryRow(query, search).Scan(
+		&student.Id,
+		&student.FullName,
+		&student.Address,
+		&student.Age,
+		&student.Email,
+	)
+
+	if err != nil {
+		return nil, fmt.Errorf("Cannot get student data: %w", err)
+	}
+
+	result = append(result, student)
+
+	return result, nil
+}

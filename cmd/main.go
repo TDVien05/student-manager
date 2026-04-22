@@ -56,6 +56,8 @@ func main() {
 			fmt.Println("===STUDENT===")
 			fullName := util.GetString("Enter student full name: ")
 			s, err := service.GetStudentsByFullNameService(fullName)
+			// s, err := service.GetOneRecordStudentByFullNameService(fullName)
+
 			if err != nil {
 				fmt.Println("Error: ", err.Error())
 				break
