@@ -38,3 +38,32 @@ func (s *StudentService) AddNewStudentService(
 
 	return true, nil
 }
+
+func (s *StudentService) GetStudentByIdService(id uint) (*models.Student, error) {
+	return s.studentRepository.GetStudentById(id)
+}
+
+func (s *StudentService) UpdateStudentService(id int, fullName string, address string, age int, email string) error {
+	student := models.Student{
+		Id:       uint(id),
+		FullName: fullName,
+		Address:  address,
+		Age:      uint(age),
+		Email:    email,
+	}
+
+	err := s.studentRepository.UpdateStudent(student)
+	if err != nil {
+		return fmt.Errorf("Cannot update student: %w", err)
+	}
+
+	return nil
+}
+
+func (s *StudentService) GetStudentsByFullNameService(fullName string) ([]models.Student, error) {
+	return s.studentRepository.GetStudentsByFullName(fullName)
+}
+
+func (s *StudentService) DeleteStudentByIdService(id uint) error {
+	return s.studentRepository.DeleteStudentById(id)
+}
